@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flexbox Playground (Radios + Fixed + Scroll toggle)</title>
+  <style>
+    :root { --gap: 8px; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, "Apple Color Emoji", "Segoe UI Emoji"; margin: 16px; }
+    h1 { margin: 0 0 12px; font-size: 1.25rem; }
+    .controls { display: grid; grid-template-columns: repeat(2, minmax(260px, 1fr)); gap: 12px 20px; align-items: start; margin-bottom: 14px; }
+
+    fieldset { border: 1px solid #bbb; border-radius: 10px; padding: 10px 12px; }
+    fieldset.disabled { 
+      opacity: 0.4; 
+      color: #999; 
+    }
+    fieldset.disabled legend { 
+      color: #999; 
+    }
+    legend { padding: 0 6px; font-weight: 600; }
+    .radio-row { display: flex; gap: 8px 14px; flex-wrap: wrap; align-items: center; }
+    .switch { display: inline-flex; align-items: center; gap: 8px; }
+
+    .container-wrap { 
+      border: 2px solid #333; 
+      border-radius: 12px; 
+      padding: 8px; 
+      background: #f6f6f6; 
+      height: 550px;
+      max-height: 550px;
+      box-sizing: border-box;
+    }
+    /* default container */
+    .container { 
+      display: flex; 
+      width: 760px; 
+      height: 320px; 
+      border: 1px dashed #999; 
+      background: #fff; 
+      gap: var(--gap); 
+    }
+    /* full size container - higher specificity */
+    .container.full-size { 
+      width: 100% !important; 
+      height: 100% !important; 
+    }
+    /* no display flex - higher specificity */
+    .container.no-flex { 
+      display: block !important; 
+    }
+
+    .item { 
+      background: #2d6cdf; 
+      color: #fff; 
+      font-weight: 600; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      border-radius: 10px; 
+      padding: 8px; 
+      cursor: pointer; 
+      transition: background-color 0.2s ease;
+    }
+    .item:hover { 
+      background: #1a4fb8; 
+    }
+
+    /*min-width: 48px; min-height: 48px;
+
+    /* .small  { width: 60px; height: 60px; }
+    .medium { width: 95px; height: 75px; }
+    .large  { width: 120px; height: 100px; } */
+
+    .small  { font-size: 2em }
+    .medium { font-size: 4em }
+    .large  { font-size: 6em}
+
+
+    .footer { margin-top: 10px; font-size: 12px; color: #555; }
+    .btn { cursor: pointer; padding: 6px 10px; border-radius: 8px; border: 1px solid #888; background: #fafafa; }
+    .btn:hover { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h1>Flexbox Playground</h1>
+
+  <div class="controls" id="controls">
+
+
+    <fieldset>
+      <legend>Container options</legend>
+      <div class="radio-row">
+        <label class="switch"><input type="checkbox" id="flexDisplay" checked> display: flex</label>
+        <label class="switch"><input type="checkbox" id="scrollable"> scrollable (overflow: auto)</label>
+        <label class="switch"><input type="checkbox" id="rtl"> direction: rtl</label>
+      </div>
+      <div class="radio-row" style="margin-top: 8px;">
+        <label><input type="radio" name="containerSize" value="fixed" checked> Fixed (760px 320px)</label>
+        <label><input type="radio" name="containerSize" value="full"> Full (100% 100%)</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Block sizes</legend>
+      <div class="radio-row" data-block-size>
+        <label><input type="radio" name="blockSize" value="small"> Small font (20px)</label>
+        <label><input type="radio" name="blockSize" value="medium"> Medium font (40px)</label>
+        <label><input type="radio" name="blockSize" value="large"> Large font (60px)</label>
+        <label><input type="radio" name="blockSize" value="mixed" checked> Mixed sizes</label>
+        <label><input type="radio" name="blockSize" value="random"> Random</label>
+      </div>
+    </fieldset>
+    </div>
+  <div class="controls" id="controls">
+
+    <fieldset>
+      <legend>flex-direction (main-axis)</legend>
+      <div class="radio-row" data-style="flexDirection">
+        <label><input type="radio" name="flexDirection" value="row" checked> row</label>
+        <label><input type="radio" name="flexDirection" value="row-reverse"> row-reverse</label>
+        <label><input type="radio" name="flexDirection" value="column"> column</label>
+        <label><input type="radio" name="flexDirection" value="column-reverse"> column-reverse</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>flex-wrap (multi-line)</legend>
+      <div class="radio-row" data-style="flexWrap">
+        <label><input type="radio" name="flexWrap" value="nowrap" checked> nowrap</label>
+        <label><input type="radio" name="flexWrap" value="wrap"> wrap</label>
+        <label><input type="radio" name="flexWrap" value="wrap-reverse"> wrap-reverse</label>
+      </div>
+    </fieldset>
+
+    </div>
+  <div class="controls" id="controls">
+
+    <fieldset>
+      <legend>justify-content (main-axis)</legend>
+      <div class="radio-row" data-style="justifyContent">
+        <label><input type="radio" name="justifyContent" value="flex-start" checked> flex-start</label>
+        <label><input type="radio" name="justifyContent" value="center"> center</label>
+        <label><input type="radio" name="justifyContent" value="flex-end"> flex-end</label>
+        <label><input type="radio" name="justifyContent" value="space-between"> space-between</label>
+        <label><input type="radio" name="justifyContent" value="space-around"> space-around</label>
+        <label><input type="radio" name="justifyContent" value="space-evenly"> space-evenly</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>align-items (cross-axis)</legend>
+      <div class="radio-row" data-style="alignItems">
+        <label><input type="radio" name="alignItems" value="flex-start" checked> flex-start</label>
+        <label><input type="radio" name="alignItems" value="center"> center</label>
+        <label><input type="radio" name="alignItems" value="flex-end"> flex-end</label>
+        <label><input type="radio" name="alignItems" value="stretch" > stretch</label>
+        <label><input type="radio" name="alignItems" value="baseline"> baseline</label>
+      </div>
+    </fieldset>
+    </div>
+  <div class="controls" id="controls">
+
+    <fieldset>
+      <legend>align-content (multi-line)</legend>
+      <div class="radio-row" data-style="alignContent">
+        <label><input type="radio" name="alignContent" value="normal" checked> normal</label>
+        <label><input type="radio" name="alignContent" value="flex-start"> flex-start</label>
+        <label><input type="radio" name="alignContent" value="center"> center</label>
+        <label><input type="radio" name="alignContent" value="flex-end"> flex-end</label>
+        <label><input type="radio" name="alignContent" value="space-between"> space-between</label>
+        <label><input type="radio" name="alignContent" value="space-around"> space-around</label>
+        <label><input type="radio" name="alignContent" value="space-evenly"> space-evenly</label>
+        <label><input type="radio" name="alignContent" value="stretch"> stretch</label>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="container-wrap">
+    <div id="container" class="container" style="overflow: hidden;">
+      <!-- 12 items, varied sizes -->
+      <div class="item small">1</div>
+      <div class="item medium">2</div>
+      <div class="item large">3</div>
+      <div class="item small">4</div>
+      <div class="item medium">5</div>
+      <div class="item large">6</div>
+      <div class="item small">7</div>
+      <div class="item medium">8</div>
+      <div class="item large">9</div>
+      <div class="item small">10</div>
+      <div class="item medium">11</div>
+      <div class="item large">12</div>
+    </div>
+  </div>
+
+
+  <script>
+    const container = document.getElementById('container');
+
+    // Wire all radio groups
+    document.querySelectorAll('.radio-row[data-style]').forEach(group => {
+      const styleProp = group.getAttribute('data-style');
+      group.addEventListener('change', (e) => {
+        if (e.target && e.target.type === 'radio') {
+          container.style[styleProp] = e.target.value;
+          
+          // Handle align-content fieldset enable/disable based on flex-wrap
+          if (styleProp === 'flexWrap') {
+            toggleAlignContentFieldset(e.target.value);
+          }
+        }
+      });
+      // set initial based on checked
+      const checked = group.querySelector('input[type="radio"]:checked');
+      if (checked) {
+        container.style[styleProp] = checked.value;
+        // Initialize align-content state on page load
+        if (styleProp === 'flexWrap') {
+          toggleAlignContentFieldset(checked.value);
+        }
+      }
+    });
+
+    // Function to toggle align-content fieldset state
+    function toggleAlignContentFieldset(flexWrapValue) {
+      const alignContentFieldset = document.querySelector('fieldset:has([data-style="alignContent"])');
+      if (alignContentFieldset) {
+        if (flexWrapValue === 'nowrap') {
+          alignContentFieldset.classList.add('disabled');
+        } else {
+          alignContentFieldset.classList.remove('disabled');
+        }
+      }
+    }
+
+    // Display flex toggle
+    const flexDisplay = document.getElementById('flexDisplay');
+    flexDisplay.addEventListener('change', () => {
+      console.log('Flex display toggled:', flexDisplay.checked);
+      if (flexDisplay.checked) {
+        container.classList.remove('no-flex');
+      } else {
+        container.classList.add('no-flex');
+      }
+    });
+
+    // Container size toggle
+    document.querySelectorAll('input[name="containerSize"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        console.log('Container size changed to:', e.target.value);
+        if (e.target.value === 'full') {
+          container.classList.add('full-size');
+        } else {
+          container.classList.remove('full-size');
+        }
+      });
+    });
+
+    // Scrollable toggle
+    const scrollable = document.getElementById('scrollable');
+    scrollable.addEventListener('change', () => {
+      container.style.overflow = scrollable.checked ? 'auto' : 'hidden';
+    });
+
+    // RTL toggle affects inline direction for row layouts
+    const rtl = document.getElementById('rtl');
+    rtl.addEventListener('change', () => {
+      container.style.direction = rtl.checked ? 'rtl' : 'ltr';
+    });
+
+    // Block size controls
+    const sizes = ['small', 'medium', 'large'];
+    const initialSizes = ['small', 'medium', 'large', 'small', 'medium', 'large', 'small', 'medium', 'large', 'small', 'medium', 'large'];
+    
+    // Block size radio buttons
+    document.querySelectorAll('input[name="blockSize"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const sizeType = e.target.value;
+        console.log('Block size changed to:', sizeType);
+        
+        [...container.children].forEach((el, i) => {
+          sizes.forEach(s => el.classList.remove(s));
+          
+          if (sizeType === 'small' || sizeType === 'medium' || sizeType === 'large') {
+            // All same size
+            el.classList.add(sizeType);
+          } else if (sizeType === 'mixed') {
+            // Original mixed pattern
+            el.classList.add(initialSizes[i]);
+          } else if (sizeType === 'random') {
+            // Random sizes
+            const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+            el.classList.add(randomSize);
+          }
+          
+          el.textContent = "B" + (i + 1);
+        });
+      });
+    });
+    
+    // Set initial mixed sizes and add click handlers
+    [...container.children].forEach((el, i) => {
+      sizes.forEach(s => el.classList.remove(s));
+      el.classList.add(initialSizes[i]);
+      el.textContent = "B" + (i + 1);
+      
+      // Add click handler to cycle through sizes
+      el.addEventListener('click', () => {
+        // Find current size
+        let currentSizeIndex = -1;
+        for (let j = 0; j < sizes.length; j++) {
+          if (el.classList.contains(sizes[j])) {
+            currentSizeIndex = j;
+            break;
+          }
+        }
+        
+        // Remove current size
+        if (currentSizeIndex !== -1) {
+          el.classList.remove(sizes[currentSizeIndex]);
+        }
+        
+        // Add next size (loop back to 0 if at end)
+        const nextSizeIndex = (currentSizeIndex + 1) % sizes.length;
+        el.classList.add(sizes[nextSizeIndex]);
+        
+        console.log(`Item ${i + 1} changed from ${sizes[currentSizeIndex]} to ${sizes[nextSizeIndex]}`);
+      });
+    });
+  </script>
+</body>
+</html>
