@@ -6,29 +6,29 @@
   <title>Nested Flex Containers Playground</title>
   <style>
     :root { --gap: 8px; }
-    body { 
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, "Apple Color Emoji", "Segoe UI Emoji"; 
-      margin: 16px; 
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      margin: 16px;
     }
     h1 { margin: 0 0 12px; font-size: 1.25rem; }
-    
 
-    
-    .main-layout { 
-      display: grid; 
-      grid-template-columns: 365px 1fr; 
-      gap: 20px; 
+
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 365px 1fr;
+      gap: 20px;
       height: calc(100vh - 60px);
     }
-    
-    .controls-panel { 
-      border: 1px solid #ccc; 
-      border-radius: 12px; 
-      padding: 16px; 
-      background: #f9f9f9; 
+
+    .controls-panel {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 16px;
+      background: #f9f9f9;
       overflow-y: auto;
     }
-    
+
     .container-panel {
       border: 1px solid #333;
       border-radius: 12px;
@@ -36,15 +36,15 @@
       background: #f6f6f6;
       overflow: auto;
     }
-    
+
     /* Root container */
-    .root-container { 
-      display: flex; 
-      width: 100%; 
+    .root-container {
+      display: flex;
+      width: 100%;
       /* height: 500px;  */
-      border: 3px solid #333; 
-      background: #fff; 
-      gap: var(--gap); 
+      border: 3px solid #333;
+      background: #fff;
+      gap: var(--gap);
       padding: 12px;
       box-sizing: border-box;
       position: relative;
@@ -64,7 +64,7 @@
       border-radius: 12px;
       transform: scale(1.002);
     }
-    
+
     .root-container::before {
       content: "Root Container";
       position: absolute;
@@ -77,9 +77,9 @@
       font-weight: 600;
       border-radius: 0 0 4px 4px;
     }
-    
+
     /* Nested containers */
-    .nested-container { 
+    .nested-container {
       display: flex;
       border: 2px solid #e74c3c;
       background: #ffebee;
@@ -92,11 +92,11 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    
+
     .nested-container:hover:not(:has(.nested-container:hover)):not(:has(.flex-item:hover)) {
       background: #ffcdd2;
     }
-    
+
     .nested-container.selected {
       border-color: #ff8f00;
       background: #ffcc80;
@@ -104,7 +104,7 @@
       border-radius: 8px;
       transform: scale(1.005);
     }
-    
+
     .nested-container::before {
       content: attr(data-label);
       position: absolute;
@@ -117,21 +117,21 @@
       font-weight: 600;
       border-radius: 0 0 3px 3px;
     }
-    
+
     .nested-container.selected::before {
       background: #ff6b35;
     }
-    
+
     /* Items within nested containers */
-    .flex-item { 
-      background: #2d6cdf; 
-      color: #fff; 
-      font-weight: 600; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      border-radius: 6px; 
-      padding: 8px; 
+    .flex-item {
+      background: #2d6cdf;
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      padding: 8px;
       min-width: 30px;
       min-height: 30px;
       font-size: 0.8rem;
@@ -140,69 +140,192 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    
-    .flex-item:hover { 
-      background: #1a4fb8; 
+
+    .flex-item:hover {
+      background: #1a4fb8;
     }
-    
-    .flex-item.selected-item { 
-      background: #28a745; 
+
+    .flex-item.selected-item {
+      background: #28a745;
       box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.4);
       transform: scale(1.05);
     }
-    
+
     /* Different item sizes */
     .item-small { font-size: 0.7rem; }
     .item-medium { font-size: 0.9rem; }
     .item-large { font-size: 1.1rem; }
     .item-xl { font-size: 1.3rem; }
     .item-xxl { font-size: 1.5rem; }
-    
-    fieldset { 
-      border: 1px solid #bbb; 
-      border-radius: 8px; 
-      padding: 12px; 
+
+    fieldset {
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      padding: 12px;
       margin-bottom: 16px;
     }
-    legend { 
-      padding: 0 8px; 
-      font-weight: 600; 
+    legend {
+      padding: 0 8px;
+      font-weight: 600;
       font-size: 0.9rem;
     }
-    
-    .control-group { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 8px; 
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       margin-bottom: 12px;
     }
-    
-    .control-row { 
-      display: flex; 
-      align-items: center; 
-      gap: 8px; 
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       flex-wrap: wrap;
     }
-    
-    .control-row label { 
-      font-size: 0.8rem; 
+
+    .control-row label {
+      font-size: 0.8rem;
       min-width: 85px;
     }
-    
-    .radio-group { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 8px; 
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    
-    .radio-group label { 
-      font-size: 0.75rem; 
-      display: flex; 
-      align-items: center; 
+
+    .radio-group label {
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
       gap: 4px;
       min-width: auto;
     }
-    
+
+    .direction-arrow {
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-left: 4px;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .direction-arrow::before {
+      content: "→";
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .direction-arrow.up::before {
+      transform: rotate(-90deg);
+    }
+
+    .direction-arrow.down::before {
+      transform: rotate(90deg);
+    }
+
+    .direction-arrow.left::before {
+      transform: rotate(180deg);
+    }
+
+    .justify-arrow {
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-left: 4px;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .justify-arrow::before {
+      content: "↔";
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .justify-arrow.vertical::before {
+      transform: rotate(90deg);
+    }
+
+    .align-arrow {
+      color: #dc3545;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-left: 4px;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .align-arrow::before {
+      content: "↔";
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .align-arrow.vertical::before {
+      transform: rotate(90deg);
+    }
+
+    .wrap-arrow {
+      color: #6f42c1;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-left: 4px;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .wrap-arrow::before {
+      content: "↷";
+      display: inline-block;
+      transition: transform 0.2s ease;
+      font-size: large;
+    }
+
+    /* Row direction wrap arrows */
+    .wrap-arrow.down-right::before {
+      transform: rotate(90deg); /* ↷ rotated 90° = curves down-right */
+    }
+
+    .wrap-arrow.up-right::before {
+      transform: rotate(-90deg); /* ↷ rotated -90° = curves up-right */
+    }
+
+    .wrap-arrow.down-left::before {
+      transform: rotate(90deg) scaleX(-1); /* ↷ rotated 90° + flipped = curves down-left */
+    }
+
+    .wrap-arrow.up-left::before {
+      transform: rotate(-90deg) scaleX(-1); /* ↷ rotated -90° + flipped = curves up-left */
+    }
+
+    /* Column direction wrap arrows */
+    .wrap-arrow.column-down-right::before {
+      transform: scaleY(-1); /* ↷ flipped = curves down-right for columns */
+    }
+
+    .wrap-arrow.column-up-right::before {
+      transform: scaleX(1) scaleY(1); /* ↷ flipped both ways = curves up-right for columns */
+    }
+
+    .wrap-arrow.right-down::before {
+      transform: scaleX(-1); /* ↷ flipped = curves right-down */
+    }
+
+    .wrap-arrow.left-down::before {
+      transform: rotate(180deg); /* ↷ rotated 180° = curves left-down */
+    }
+
+    .wrap-arrow.right-up::before {
+      transform: scaleX(-1) scaleY(-1); /* ↷ flipped both ways = curves right-up */
+    }
+
+    .wrap-arrow.left-up::before {
+      transform: rotate(180deg) scaleY(-1); /* ↷ rotated 180° + flipped vertically = curves left-up */
+    }
+
     .selected-container-info {
       background: #fff3cd;
       border: 1px solid #ffeaa7;
@@ -211,20 +334,20 @@
       margin-bottom: 16px;
       font-size: 0.85rem;
     }
-    
-    .btn { 
-      cursor: pointer; 
-      padding: 6px 10px; 
-      border-radius: 6px; 
-      border: 1px solid #888; 
-      background: #fafafa; 
+
+    .btn {
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #888;
+      background: #fafafa;
       font-size: 0.8rem;
       margin: 2px;
     }
     .btn:hover { background: #f0f0f0; }
-    
+
     .btn.small { padding: 4px 8px; font-size: 0.75rem; }
-    
+
     .info-display {
       background: #e3f2fd;
       border: 1px solid #90caf9;
@@ -235,7 +358,7 @@
       font-family: monospace;
       white-space: pre-wrap;
     }
-    
+
     .container-hierarchy {
       background: #f8f9fa;
       border: 1px solid #dee2e6;
@@ -244,28 +367,28 @@
       margin-bottom: 12px;
       font-size: 0.8rem;
     }
-    
+
     .hierarchy-item {
       padding: 2px 0;
       cursor: pointer;
       border-radius: 3px;
       padding-left: 8px;
     }
-    
+
     .hierarchy-item:hover {
       background: #e9ecef;
     }
-    
+
     .hierarchy-item.selected {
       background: #fff3e0;
       font-weight: 600;
     }
-    
+
     .hierarchy-item.root {
       font-weight: 600;
       color: #333;
     }
-    
+
     .hierarchy-item.nested {
       margin-left: 16px;
       color: #e74c3c;
@@ -284,17 +407,9 @@
       <button class="btn small" id="randomizeLayout">Randomize</button>
     </div>
   </div>
-  
+
   <div class="main-layout">
     <div class="controls-panel">
-      <div class="selected-container-info" id="topCSSInfo">
-        <div class="control-row" id="topButtons" style="display: none; margin-bottom: 8px;">
-          <button class="btn small" id="resetContainer">Reset Container</button>
-          <button class="btn small" id="copyContainerCSS">Copy CSS</button>
-        </div>
-        <div class="info-display" id="cssInfoTop" style="display: none;"></div>
-      </div>
-      
       <fieldset>
         <legend>Container Hierarchy</legend>
         <div style="margin-bottom: 8px;">
@@ -312,13 +427,13 @@
           <div class="hierarchy-item nested" data-container="container3">📦 Container C</div>
         </div>
       </fieldset>
-      
+
       <fieldset id="containerControls" style="display: none;">
         <legend id="controlsTitle">Container Controls</legend>
-        
+
         <div class="control-group">
           <div class="control-row">
-            <label>Direction:</label>
+            <label>Direction:<span class="direction-arrow" id="directionArrow"></span></label>
             <div class="radio-group" id="directionGroup">
               <label><input type="radio" name="flexDirection" value="row" checked> row</label>
               <label><input type="radio" name="flexDirection" value="row-reverse"> row-rev</label>
@@ -327,21 +442,10 @@
             </div>
           </div>
         </div>
-        
+
         <div class="control-group">
           <div class="control-row">
-            <label>Flex Wrap:</label>
-            <div class="radio-group" id="wrapGroup">
-              <label><input type="radio" name="flexWrap" value="nowrap" checked> nowrap</label>
-              <label><input type="radio" name="flexWrap" value="wrap"> wrap</label>
-              <label><input type="radio" name="flexWrap" value="wrap-reverse"> wrap-rev</label>
-            </div>
-          </div>
-        </div>
-        
-        <div class="control-group">
-          <div class="control-row">
-            <label>Justify Content:</label>
+            <label>Justify Content:<span class="justify-arrow" id="justifyArrow"></span></label>
             <div class="radio-group" id="justifyGroup">
               <label><input type="radio" name="justifyContent" value="flex-start" checked> start</label>
               <label><input type="radio" name="justifyContent" value="center"> center</label>
@@ -352,36 +456,48 @@
             </div>
           </div>
         </div>
-        
+
         <div class="control-group">
           <div class="control-row">
-            <label>Align Items:</label>
+            <label>Align Items:<span class="align-arrow" id="alignArrow"></span></label>
             <div class="radio-group" id="alignItemsGroup">
+              <label><input type="radio" name="alignItems" value="stretch" checked> stretch</label>
               <label><input type="radio" name="alignItems" value="flex-start"> start</label>
               <label><input type="radio" name="alignItems" value="center"> center</label>
               <label><input type="radio" name="alignItems" value="flex-end"> end</label>
-              <label><input type="radio" name="alignItems" value="stretch" checked> stretch</label>
               <label><input type="radio" name="alignItems" value="baseline"> baseline</label>
             </div>
           </div>
         </div>
-        
+        <hr style="margin: 15px 0; border: 1px solid #ddd;">
+
+        <div class="control-group">
+          <div class="control-row">
+            <label>Flex Wrap:<span class="wrap-arrow" id="wrapArrow"></span></label>
+            <div class="radio-group" id="wrapGroup">
+              <label><input type="radio" name="flexWrap" value="nowrap" checked> nowrap</label>
+              <label><input type="radio" name="flexWrap" value="wrap"> wrap</label>
+              <label><input type="radio" name="flexWrap" value="wrap-reverse"> wrap-rev</label>
+            </div>
+          </div>
+        </div>
+
         <div class="control-group" id="alignContentSection">
           <div class="control-row">
-            <label>Align Content:</label>
+            <label>Align Content:<span class="align-arrow" id="alignContentArrow"></span></label>
             <div class="radio-group" id="alignContentGroup">
-              <label><input type="radio" name="alignContent" value="normal" checked> normal</label>
+              <label><input type="radio" name="alignContent" value="stretch" checked> stretch</label>
               <label><input type="radio" name="alignContent" value="flex-start"> start</label>
               <label><input type="radio" name="alignContent" value="center"> center</label>
               <label><input type="radio" name="alignContent" value="flex-end"> end</label>
               <label><input type="radio" name="alignContent" value="space-between"> between</label>
               <label><input type="radio" name="alignContent" value="space-around"> around</label>
               <label><input type="radio" name="alignContent" value="space-evenly"> evenly</label>
-              <label><input type="radio" name="alignContent" value="stretch"> stretch</label>
             </div>
           </div>
         </div>
-        
+        <hr style="margin: 15px 0; border: 1px solid #ddd;">
+
         <!-- Container Size Controls -->
         <div class="control-group">
           <div class="control-row" style="flex-wrap: nowrap;">
@@ -395,7 +511,7 @@
             <input type="text" id="containerHeightValue" placeholder="auto" style="width: 60px;">
           </div>
         </div>
-        
+
         <!-- Container Scroll Controls -->
         <div class="control-group">
           <div class="control-row">
@@ -408,12 +524,12 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Container as Flex Item Properties (only show for nested containers) -->
         <div id="containerAsItemSection" style="display: none;">
           <hr style="margin: 15px 0; border: 1px solid #ddd;">
           <h4 style="margin: 10px 0; color: #666; font-size: 0.9em;">As Flex Item (within parent container):</h4>
-          
+
           <div class="control-group">
             <div class="control-row">
               <label>Flex Grow:</label>
@@ -431,7 +547,7 @@
               <input type="text" id="containerFlexBasisValue" placeholder="auto" style="width: 50px;">
             </div>
           </div>
-          
+
           <div class="control-group">
             <label>Align Self:</label>
             <div class="radio-group" id="containerAlignSelfGroup">
@@ -445,10 +561,10 @@
         </div>
       </fieldset>
       </fieldset>
-      
+
       <fieldset id="itemControls" style="display: none;">
         <legend id="itemControlsTitle">Selected Item Controls</legend>
-        
+
         <div class="control-group">
           <div class="control-row">
             <label>Font Size:</label>
@@ -471,7 +587,7 @@
             <input type="text" id="itemFlexBasisValue" placeholder="auto" style="width: 50px;">
           </div>
         </div>
-        
+
         <div class="control-group">
           <div class="control-row">
             <label>Width:</label>
@@ -484,7 +600,7 @@
             <input type="text" id="itemHeightValue" placeholder="auto" style="width: 50px;">
           </div>
         </div>
-        
+
         <div class="control-group">
           <label>Align Self:</label>
           <div class="radio-group">
@@ -497,9 +613,16 @@
         </div>
       </fieldset>
 
+      <div class="selected-container-info" id="topCSSInfo">
+        <div class="control-row" id="topButtons" style="display: none; margin-bottom: 8px;">
+          <button class="btn small" id="resetContainer">Reset Container</button>
+          <button class="btn small" id="copyContainerCSS">Copy CSS</button>
+        </div>
+        <div class="info-display" id="cssInfoTop" style="display: none;"></div>
+      </div>
 
     </div>
-    
+
     <div class="container-panel">
       <div class="root-container" id="rootContainer" data-container="root">
         <div class="nested-container" id="container1" data-container="container1" data-label="Container A">
@@ -510,7 +633,7 @@
           <div class="flex-item item-xxl">A5</div>
           <div class="flex-item item-large">A6</div>
         </div>
-        
+
         <div class="nested-container" id="container2" data-container="container2" data-label="Container B">
           <div class="nested-container" id="container4" data-container="container4" data-label="Container D">
             <div class="flex-item item-small">D1</div>
@@ -529,7 +652,7 @@
             <div class="flex-item item-large">E6</div>
           </div>
         </div>
-        
+
         <div class="nested-container" id="container3" data-container="container3" data-label="Container C">
           <div class="flex-item item-small">C1</div>
           <div class="flex-item item-medium">C2</div>
@@ -550,7 +673,7 @@
     let selectedItem = null;
     let selectedItems = []; // Array to track multiple selected items
     let lastClickedItem = null; // For shift-click range selection
-    
+
     // Helper function to apply styles to all selected items
     function applyStyleToAllItems(property, value) {
       selectedItems.forEach(item => {
@@ -566,10 +689,10 @@
       const removeContainerBtn = document.getElementById('removeContainer');
       const addItemBtn = document.getElementById('addItem');
       const removeItemBtn = document.getElementById('removeItem');
-      
+
       const hasContainerSelected = selectedContainer || selectedContainers.length > 0;
       const hasItemSelected = selectedItem || selectedItems.length > 0;
-      
+
       if (hasItemSelected) {
         // When item(s) selected: disable all buttons except removeItem
         addContainerBtn.disabled = true;
@@ -597,7 +720,7 @@
       setTimeout(() => {
         const allContainers = document.querySelectorAll('.root-container, .nested-container');
         const allSelected = allContainers.length > 0 && selectedContainers.length === allContainers.length;
-        
+
         console.log('DEBUG updateSelectAllCheckbox:', {
           allContainersCount: allContainers.length,
           selectedContainersCount: selectedContainers.length,
@@ -605,14 +728,14 @@
           selectedIds: selectedContainers.map(c => c.id),
           allContainerIds: Array.from(allContainers).map(c => c.getAttribute('data-container') || c.id)
         });
-        
+
         const checkbox = document.getElementById('selectAllContainersToggle');
-        
+
         // Set flag to prevent triggering change event
         isUpdatingCheckbox = true;
         console.log('DEBUG Setting checkbox to:', allSelected);
         checkbox.checked = allSelected;
-        
+
         // Reset flag after a brief delay
         setTimeout(() => {
           isUpdatingCheckbox = false;
@@ -624,9 +747,9 @@
     function selectContainer(containerElement, containerId, event = null) {
       const isCtrlClick = event && (event.ctrlKey || event.metaKey);
       const isShiftClick = event && event.shiftKey;
-      
+
       console.log('Container clicked:', containerId, 'Ctrl:', isCtrlClick, 'Shift:', isShiftClick);
-      
+
       // Clear any selected items - containers and items are mutually exclusive
       document.querySelectorAll('.flex-item').forEach(item => {
         item.classList.remove('selected-item');
@@ -635,18 +758,18 @@
       selectedItem = null;
       lastClickedItem = null;
       document.getElementById('itemControls').style.display = 'none';
-      
+
       if (isShiftClick && lastClickedContainer && lastClickedContainer !== containerElement) {
         // Shift-click: Select range from last clicked container to current
         console.log('Shift-click range selection for containers');
         const allContainers = [...document.querySelectorAll('.nested-container, .root-container')];
         const lastIndex = allContainers.indexOf(lastClickedContainer);
         const currentIndex = allContainers.indexOf(containerElement);
-        
+
         if (lastIndex !== -1 && currentIndex !== -1) {
           const startIndex = Math.min(lastIndex, currentIndex);
           const endIndex = Math.max(lastIndex, currentIndex);
-          
+
           // Clear current selection and select range
           selectedContainers = [];
           document.querySelectorAll('.nested-container, .root-container').forEach(container => {
@@ -655,7 +778,7 @@
           document.querySelectorAll('.hierarchy-item').forEach(item => {
             item.classList.remove('selected');
           });
-          
+
           for (let i = startIndex; i <= endIndex; i++) {
             const container = allContainers[i];
             const id = container.getAttribute('data-container') || container.id;
@@ -671,7 +794,7 @@
         // Ctrl-click: Toggle this container in selection
         console.log('Ctrl-click toggle for container');
         const existingIndex = selectedContainers.findIndex(c => c.element === containerElement);
-        
+
         if (existingIndex >= 0) {
           // Remove from selection
           selectedContainers.splice(existingIndex, 1);
@@ -685,12 +808,12 @@
           const hierarchyItem = document.querySelector(`[data-container="${containerId}"]`);
           if (hierarchyItem) hierarchyItem.classList.add('selected');
         }
-        
+
         lastClickedContainer = containerElement;
       } else {
         // Normal click: Select only this container
         console.log('Single container selection');
-        
+
         // Clear all previous selections
         document.querySelectorAll('.nested-container, .root-container').forEach(container => {
           container.classList.remove('selected');
@@ -698,23 +821,23 @@
         document.querySelectorAll('.hierarchy-item').forEach(item => {
           item.classList.remove('selected');
         });
-        
+
         selectedContainers = [{ element: containerElement, id: containerId }];
         containerElement.classList.add('selected');
         const hierarchyItem = document.querySelector(`[data-container="${containerId}"]`);
         if (hierarchyItem) hierarchyItem.classList.add('selected');
         lastClickedContainer = containerElement;
       }
-      
+
       // Update selectedContainer for backward compatibility
       selectedContainer = selectedContainers.length > 0 ? selectedContainers[0] : null;
-      
+
       // Show container-specific UI elements
       showContainerUI();
-      
+
       // Show controls
       document.getElementById('containerControls').style.display = 'block';
-      
+
       // Get container display name
       let displayName;
       if (selectedContainers.length > 1) {
@@ -726,7 +849,7 @@
         displayName = dataLabel || (containerId.charAt(0).toUpperCase() + containerId.slice(1));
       }
       document.getElementById('controlsTitle').textContent = `${displayName} Controls`;
-      
+
       // Show/hide container as item section (hide only if root is selected)
       const containerAsItemSection = document.getElementById('containerAsItemSection');
       const hasRootSelected = selectedContainers.some(container => container.id === 'root' || container.id === 'rootContainer');
@@ -735,11 +858,11 @@
       } else {
         containerAsItemSection.style.display = 'block';
       }
-      
+
       // Update controls with current values
       updateControlsFromContainer();
       updateCSSDisplay();
-      
+
       // Hide item controls when container is selected
       document.getElementById('itemControls').style.display = 'none';
       selectedItem = null;
@@ -748,7 +871,7 @@
       document.querySelectorAll('.flex-item').forEach(item => {
         item.classList.remove('selected-item');
       });
-      
+
       // Update button states and checkbox state
       console.log('DEBUG After selectContainer:', {
         selectedContainersCount: selectedContainers.length,
@@ -761,37 +884,37 @@
     function selectAllContainers() {
       // Clear previous selections
       clearSelection();
-      
+
       // Enter multi-select mode
       isMultiSelectMode = true;
       selectedContainers = [];
-      
+
       // Select all containers
       const allContainers = document.querySelectorAll('.root-container, .nested-container');
       allContainers.forEach(container => {
         const containerId = container.getAttribute('data-container') || container.id;
         container.classList.add('selected');
         selectedContainers.push({ element: container, id: containerId });
-        
+
         // Update hierarchy selection
         const hierarchyItem = document.querySelector(`[data-container="${containerId}"]`);
         if (hierarchyItem) {
           hierarchyItem.classList.add('selected');
         }
       });
-      
+
       // Set the first container as primary selected container for controls
       if (selectedContainers.length > 0) {
         selectedContainer = selectedContainers[0];
       }
-      
+
       // Show container-specific UI elements
       showContainerUI();
-      
+
       // Show controls
       document.getElementById('containerControls').style.display = 'block';
       document.getElementById('controlsTitle').textContent = `${selectedContainers.length} Containers Selected`;
-      
+
       // Show/hide container as item section (hide only if root is selected)
       const containerAsItemSection = document.getElementById('containerAsItemSection');
       const hasRootSelected = selectedContainers.some(container => container.id === 'root' || container.id === 'rootContainer');
@@ -800,13 +923,13 @@
       } else {
         containerAsItemSection.style.display = 'block';
       }
-      
+
       // Update controls and CSS display
       updateControlsFromContainer();
       updateCSSDisplay();
       updateButtonStates();
       updateSelectAllCheckbox();
-      
+
       // Hide item controls
       document.getElementById('itemControls').style.display = 'none';
       selectedItem = null;
@@ -828,7 +951,7 @@
       // Show container-specific elements when a container is selected
       document.getElementById('topButtons').style.display = 'block';
       document.getElementById('cssInfoTop').style.display = 'block';
-      
+
       // Update button labels for container context
       document.getElementById('resetContainer').textContent = 'Reset Container';
       document.getElementById('copyContainerCSS').textContent = 'Copy CSS';
@@ -845,7 +968,7 @@
       document.querySelectorAll('.flex-item').forEach(item => {
         item.classList.remove('selected-item');
       });
-      
+
       selectedContainer = null;
       selectedContainers = [];
       lastClickedContainer = null;
@@ -853,11 +976,11 @@
       selectedItem = null;
       selectedItems = [];
       lastClickedItem = null;
-      
+
       // Hide all UI elements that are specific to selections
       hideContainerUI();
       document.getElementById('itemControls').style.display = 'none';
-      
+
       // Update button states and checkbox state
       updateButtonStates();
       updateSelectAllCheckbox();
@@ -868,7 +991,7 @@
       const isCtrlClick = event && (event.ctrlKey || event.metaKey);
       const isShiftClick = event && event.shiftKey;
       console.log('selectItem called:', itemElement.textContent, 'isCtrlClick:', isCtrlClick, 'isShiftClick:', isShiftClick);
-      
+
       // Hide container controls and clear container selections - items and containers are mutually exclusive
       document.getElementById('containerControls').style.display = 'none';
       selectedContainer = null;
@@ -880,7 +1003,7 @@
       document.querySelectorAll('.hierarchy-item').forEach(item => {
         item.classList.remove('selected');
       });
-      
+
       if (isShiftClick && lastClickedItem && lastClickedItem !== itemElement) {
         // Shift-click: Select range from last clicked to current
         const allItems = Array.from(document.querySelectorAll('.flex-item'));
@@ -888,20 +1011,20 @@
         const endIndex = allItems.indexOf(itemElement);
         const minIndex = Math.min(startIndex, endIndex);
         const maxIndex = Math.max(startIndex, endIndex);
-        
+
         // Clear previous selection
         document.querySelectorAll('.flex-item').forEach(item => {
           item.classList.remove('selected-item');
         });
         selectedItems = [];
-        
+
         // Select range
         for (let i = minIndex; i <= maxIndex; i++) {
           const item = allItems[i];
           item.classList.add('selected-item');
           selectedItems.push(item);
         }
-        
+
         selectedItem = itemElement;
       } else if (isCtrlClick) {
         // Ctrl/Cmd-click: Toggle individual item
@@ -925,32 +1048,32 @@
         selectedItem = itemElement;
         itemElement.classList.add('selected-item');
       }
-      
+
       lastClickedItem = itemElement;
-      
+
       // Show item controls
       if (selectedItems.length > 0) {
         document.getElementById('itemControls').style.display = 'block';
-        const titleText = selectedItems.length === 1 
+        const titleText = selectedItems.length === 1
           ? `Item: ${selectedItems[0].textContent}`
           : `Items: ${selectedItems.length} selected`;
         document.getElementById('itemControlsTitle').textContent = titleText;
-        
+
         // Show CSS info and buttons at top for items
         document.getElementById('cssInfoTop').style.display = 'block';
         document.getElementById('topButtons').style.display = 'block';
-        
+
         // Update button labels for item context
         document.getElementById('resetContainer').textContent = selectedItems.length === 1 ? 'Reset Item' : 'Reset Items';
         document.getElementById('copyContainerCSS').textContent = 'Copy CSS';
       } else {
         document.getElementById('itemControls').style.display = 'none';
       }
-      
+
       // Update item controls with current values
       updateItemControlsFromElement();
       updateItemCSSDisplay();
-      
+
       // Update button states and checkbox state
       updateButtonStates();
       updateSelectAllCheckbox();
@@ -973,7 +1096,7 @@
       } else if (e.target.classList.contains('nested-container')) {
         selectContainer(e.target, e.target.getAttribute('data-container'), e);
         e.stopPropagation();
-      } else if (e.target.classList.contains('container-panel') || 
+      } else if (e.target.classList.contains('container-panel') ||
                  e.target.classList.contains('playground') ||
                  e.target === document.body) {
         // Clear all selections when clicking in empty areas
@@ -994,7 +1117,7 @@
     document.getElementById('hierarchy').addEventListener('click', (e) => {
       if (e.target.classList.contains('hierarchy-item')) {
         const containerId = e.target.getAttribute('data-container');
-        const containerElement = containerId === 'root' 
+        const containerElement = containerId === 'root'
           ? document.getElementById('rootContainer')
           : document.getElementById(containerId);
         selectContainer(containerElement, containerId, e);
@@ -1018,7 +1141,143 @@
     setupPropertyControl('justifyContent');
     setupPropertyControl('alignItems');
     setupPropertyControl('alignContent');
-    
+
+    // Arrow update functions
+    function updateDirectionArrow(direction) {
+      const arrow = document.getElementById('directionArrow');
+      if (!arrow) return;
+
+      arrow.className = 'direction-arrow';
+      switch(direction) {
+        case 'row':
+          break; // Default right arrow
+        case 'row-reverse':
+          arrow.classList.add('left');
+          break;
+        case 'column':
+          arrow.classList.add('down');
+          break;
+        case 'column-reverse':
+          arrow.classList.add('up');
+          break;
+      }
+    }
+
+    function updateJustifyArrow(justifyContent, direction) {
+      const arrow = document.getElementById('justifyArrow');
+      if (!arrow) return;
+
+      arrow.className = 'justify-arrow';
+      if (direction === 'column' || direction === 'column-reverse') {
+        arrow.classList.add('vertical');
+      }
+    }
+
+    function updateAlignArrow(alignItems, direction) {
+      const arrow = document.getElementById('alignArrow');
+      if (!arrow) return;
+
+      arrow.className = 'align-arrow';
+      if (direction === 'row' || direction === 'row-reverse') {
+        arrow.classList.add('vertical');
+      }
+    }
+
+    function updateAlignContentArrow(alignContent, direction) {
+      const arrow = document.getElementById('alignContentArrow');
+      if (!arrow) return;
+
+      arrow.className = 'align-arrow';
+      if (direction === 'row' || direction === 'row-reverse') {
+        arrow.classList.add('vertical');
+      }
+    }
+
+    function updateWrapArrow(direction, wrapValue) {
+      const arrow = document.getElementById('wrapArrow');
+      if (!arrow) return;
+
+      arrow.className = 'wrap-arrow';
+
+      if (wrapValue === 'nowrap') {
+        // Hide the arrow for nowrap
+        arrow.style.display = 'none';
+        return;
+      } else {
+        arrow.style.display = 'inline-block';
+      }
+
+      // Determine wrap direction based on flex-direction and flex-wrap
+      // The wrap direction depends on both the main axis direction AND wrap type
+      if (direction === 'row') {
+        // Row: items flow left→right
+        if (wrapValue === 'wrap') {
+          arrow.classList.add('down-right'); // wrap down-right
+        } else { // wrap-reverse
+          arrow.classList.add('down-left'); // wrap down-left
+        }
+      } else if (direction === 'row-reverse') {
+        // Row-reverse: items flow right→left
+        if (wrapValue === 'wrap') {
+          arrow.classList.add('up-left'); // wrap up-left
+        } else { // wrap-reverse
+          arrow.classList.add('up-right'); // wrap up-right
+        }
+      } else if (direction === 'column') {
+        // Column: items flow top→bottom (down), then wrap right
+        if (wrapValue === 'wrap') {
+          arrow.classList.add('column-down-right'); // Flow down, then wrap right
+        } else { // wrap-reverse
+          arrow.classList.add('left-down'); // wrap left-down
+        }
+      } else { // column-reverse
+        // Column-reverse: items flow bottom→top (up), then wrap right
+        if (wrapValue === 'wrap') {
+          arrow.classList.add('column-up-right'); // Flow up, then wrap right
+        } else { // wrap-reverse
+          arrow.classList.add('left-up'); // wrap left-up
+        }
+      }
+    }
+
+    function updateAllArrows() {
+      if (!selectedContainer) return;
+
+      const style = selectedContainer.element.style;
+      const computedStyle = getComputedStyle(selectedContainer.element);
+
+      const direction = style.flexDirection || computedStyle.flexDirection || 'row';
+      const justifyContent = style.justifyContent || computedStyle.justifyContent || 'flex-start';
+      const alignItems = style.alignItems || computedStyle.alignItems || 'stretch';
+      const alignContent = style.alignContent || computedStyle.alignContent || 'stretch';
+      const flexWrap = style.flexWrap || computedStyle.flexWrap || 'nowrap';
+
+      updateDirectionArrow(direction);
+      updateJustifyArrow(justifyContent, direction);
+      updateAlignArrow(alignItems, direction);
+      updateAlignContentArrow(alignContent, direction);
+      updateWrapArrow(direction, flexWrap);
+    }
+
+    // Enhanced property control setup with arrow updates
+    function setupPropertyControlWithArrows(propertyName) {
+      document.querySelectorAll(`input[name="${propertyName}"]`).forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          if (selectedContainer) {
+            applyStyleToAllSelected(propertyName, e.target.value);
+            updateCSSDisplay();
+            updateAllArrows(); // Update arrows when properties change
+          }
+        });
+      });
+    }
+
+    // Re-setup controls with arrow updates
+    setupPropertyControlWithArrows('flexDirection');
+    setupPropertyControlWithArrows('justifyContent');
+    setupPropertyControlWithArrows('alignItems');
+    setupPropertyControlWithArrows('alignContent');
+
     // Container scroll controls - special handling for overflow
     document.querySelectorAll('input[name="containerOverflow"]').forEach(radio => {
       radio.addEventListener('change', (e) => {
@@ -1028,19 +1287,20 @@
         }
       });
     });
-    
+
     // Special handling for flexWrap to enable/disable align-content
     document.querySelectorAll('input[name="flexWrap"]').forEach(radio => {
       radio.addEventListener('change', (e) => {
         if (selectedContainer) {
           applyStyleToAllSelected('flexWrap', e.target.value);
           updateCSSDisplay();
+          updateAllArrows(); // Update arrows when wrap changes
         }
-        
+
         // Enable/disable align-content section based on wrap setting
         const alignContentSection = document.getElementById('alignContentSection');
         const isWrapEnabled = e.target.value !== 'nowrap';
-        
+
         if (isWrapEnabled) {
           alignContentSection.style.opacity = '1';
           alignContentSection.style.pointerEvents = 'auto';
@@ -1050,7 +1310,7 @@
         }
       });
     });
-    
+
     // Container as flex item controls - special handling for align-self
     document.querySelectorAll('input[name="containerAlignSelf"]').forEach(radio => {
       radio.addEventListener('change', (e) => {
@@ -1060,12 +1320,12 @@
         }
       });
     });
-    
+
     // Container flex item range controls
     function setupContainerRangeControl(property, rangeId, valueId, unit = '') {
       const range = document.getElementById(rangeId);
       const valueInput = document.getElementById(valueId);
-      
+
       range.addEventListener('input', (e) => {
         const value = e.target.value;
         const shouldBeAuto = value === '0' && (property.includes('Basis') || property === 'width' || property === 'height');
@@ -1079,7 +1339,7 @@
           updateCSSDisplay();
         }
       });
-      
+
       valueInput.addEventListener('input', (e) => {
         if (selectedContainer) {
           applyStyleToAllSelected(property, e.target.value);
@@ -1087,21 +1347,21 @@
         }
       });
     }
-    
+
     setupContainerRangeControl('flexGrow', 'containerFlexGrowRange', 'containerFlexGrowValue');
     setupContainerRangeControl('flexShrink', 'containerFlexShrinkRange', 'containerFlexShrinkValue');
     setupContainerRangeControl('flexBasis', 'containerFlexBasisRange', 'containerFlexBasisValue', 'px');
-    
+
     // Container size controls (defaulting to % unit)
     setupContainerRangeControl('width', 'containerWidthRange', 'containerWidthValue', '%');
     setupContainerRangeControl('height', 'containerHeightRange', 'containerHeightValue', '%');
 
     function updateControlsFromContainer() {
       if (!selectedContainer) return;
-      
+
       const style = selectedContainer.element.style;
       const computedStyle = getComputedStyle(selectedContainer.element);
-      
+
       // Update radio buttons based on current styles
       const properties = ['flexDirection', 'flexWrap', 'justifyContent', 'alignItems', 'alignContent'];
       properties.forEach(prop => {
@@ -1109,17 +1369,20 @@
         const radio = document.querySelector(`input[name="${prop}"][value="${value}"]`);
         if (radio) radio.checked = true;
       });
-      
+
+      // Update arrows to match current property values
+      updateAllArrows();
+
       // Update overflow/scroll controls
       const overflowValue = style.overflow || computedStyle.overflow || 'visible';
       const overflowRadio = document.querySelector(`input[name="containerOverflow"][value="${overflowValue}"]`);
       if (overflowRadio) overflowRadio.checked = true;
-      
+
       // Update align-content section state based on flex-wrap
       const flexWrapValue = style.flexWrap || computedStyle.flexWrap || 'nowrap';
       const alignContentSection = document.getElementById('alignContentSection');
       const isWrapEnabled = flexWrapValue !== 'nowrap';
-      
+
       if (isWrapEnabled) {
         alignContentSection.style.opacity = '1';
         alignContentSection.style.pointerEvents = 'auto';
@@ -1127,35 +1390,35 @@
         alignContentSection.style.opacity = '0.5';
         alignContentSection.style.pointerEvents = 'none';
       }
-      
+
       // Update container size controls (only use explicit styles, not computed values)
       const width = style.width || 'auto';
       const widthNumeric = width === 'auto' ? '0' : parseFloat(width) || '0';
       document.getElementById('containerWidthRange').value = widthNumeric;
       document.getElementById('containerWidthValue').value = width;
-      
+
       const height = style.height || 'auto';
       const heightNumeric = height === 'auto' ? '0' : parseFloat(height) || '0';
       document.getElementById('containerHeightRange').value = heightNumeric;
       document.getElementById('containerHeightValue').value = height;
-      
+
       // Update container as flex item controls (only for nested containers)
       if (selectedContainer.id !== 'rootContainer') {
         // Update align self
         const alignSelfValue = style.alignSelf || computedStyle.alignSelf || 'auto';
         const alignSelfRadio = document.querySelector(`input[name="containerAlignSelf"][value="${alignSelfValue}"]`);
         if (alignSelfRadio) alignSelfRadio.checked = true;
-        
+
         // Update flex grow
         const flexGrow = style.flexGrow || computedStyle.flexGrow || '0';
         document.getElementById('containerFlexGrowRange').value = flexGrow;
         document.getElementById('containerFlexGrowValue').value = flexGrow;
-        
+
         // Update flex shrink
         const flexShrink = style.flexShrink || computedStyle.flexShrink || '1';
         document.getElementById('containerFlexShrinkRange').value = flexShrink;
         document.getElementById('containerFlexShrinkValue').value = flexShrink;
-        
+
         // Update flex basis
         const flexBasis = style.flexBasis || computedStyle.flexBasis || 'auto';
         const flexBasisNumeric = flexBasis === 'auto' ? '0' : parseFloat(flexBasis) || '0';
@@ -1191,9 +1454,9 @@
 
     function updateCSSDisplay() {
       if (selectedContainers.length === 0 && !selectedContainer) return;
-      
+
       let combinedCSS = '';
-      
+
       if (selectedContainers.length > 1) {
         // Show combined CSS for all selected containers and their children
         selectedContainers.forEach(container => {
@@ -1205,42 +1468,42 @@
         combinedCSS += generateContainerCSS(selectedContainer);
         combinedCSS += generateChildrenCSS(selectedContainer.element);
       }
-      
+
       document.getElementById('cssInfoTop').textContent = combinedCSS || '/* No custom styles applied */';
     }
-    
+
     function generateContainerCSS(container) {
       const relevantStyles = [];
       const style = container.element.style;
-      
+
       if (style.flexDirection && style.flexDirection !== 'row') relevantStyles.push(`  flex-direction: ${style.flexDirection}`);
       if (style.flexWrap && style.flexWrap !== 'nowrap') relevantStyles.push(`  flex-wrap: ${style.flexWrap}`);
       if (style.justifyContent && style.justifyContent !== 'flex-start') relevantStyles.push(`  justify-content: ${style.justifyContent}`);
       if (style.alignItems && style.alignItems !== 'stretch') relevantStyles.push(`  align-items: ${style.alignItems}`);
       if (style.alignContent && style.alignContent !== 'stretch') relevantStyles.push(`  align-content: ${style.alignContent}`);
       if (style.overflow && style.overflow !== 'visible') relevantStyles.push(`  overflow: ${style.overflow}`);
-      
+
       // Generate CSS selector
-      let selector = container.id === 'root' || container.id === 'rootContainer' 
-        ? '.root-container' 
+      let selector = container.id === 'root' || container.id === 'rootContainer'
+        ? '.root-container'
         : `#${container.id}`;
-      
+
       if (relevantStyles.length > 0) {
         return `${selector} {\n  display: flex;\n${relevantStyles.join(';\n')};\n}\n\n`;
       }
       return '';
     }
-    
+
     function generateChildrenCSS(parentElement) {
       let childrenCSS = '';
-      
+
       // Find child containers with custom styles
       const childContainers = parentElement.querySelectorAll('.nested-container');
       childContainers.forEach(childContainer => {
         const style = childContainer.style;
         const childId = childContainer.id;
         const relevantStyles = [];
-        
+
         // Container flexbox properties
         if (style.flexDirection && style.flexDirection !== 'row') relevantStyles.push(`  flex-direction: ${style.flexDirection}`);
         if (style.flexWrap && style.flexWrap !== 'nowrap') relevantStyles.push(`  flex-wrap: ${style.flexWrap}`);
@@ -1248,28 +1511,28 @@
         if (style.alignItems && style.alignItems !== 'stretch') relevantStyles.push(`  align-items: ${style.alignItems}`);
         if (style.alignContent && style.alignContent !== 'stretch') relevantStyles.push(`  align-content: ${style.alignContent}`);
         if (style.overflow && style.overflow !== 'visible') relevantStyles.push(`  overflow: ${style.overflow}`);
-        
+
         // Container as flex item properties
         if (style.flexGrow && style.flexGrow !== '0') relevantStyles.push(`  flex-grow: ${style.flexGrow}`);
         if (style.flexShrink && style.flexShrink !== '1') relevantStyles.push(`  flex-shrink: ${style.flexShrink}`);
         if (style.flexBasis && style.flexBasis !== 'auto') relevantStyles.push(`  flex-basis: ${style.flexBasis}`);
         if (style.alignSelf && style.alignSelf !== 'auto') relevantStyles.push(`  align-self: ${style.alignSelf}`);
-        
+
         if (relevantStyles.length > 0) {
           const displayFlex = relevantStyles.some(s => s.includes('flex-direction') || s.includes('justify-content') || s.includes('align-items') || s.includes('align-content') || s.includes('flex-wrap'));
           const prefix = displayFlex ? '  display: flex;\n' : '';
           childrenCSS += `#${childId} {\n${prefix}${relevantStyles.join(';\n')};\n}\n\n`;
         }
       });
-      
+
       // Find child items with custom styles
       const childItems = parentElement.querySelectorAll('.flex-item');
       const itemStyles = new Map();
-      
+
       childItems.forEach(item => {
         const style = item.style;
         const relevantStyles = [];
-        
+
         if (style.fontSize && !item.className.includes('item-')) relevantStyles.push(`  font-size: ${style.fontSize}`);
         if (style.flexGrow && style.flexGrow !== '0') relevantStyles.push(`  flex-grow: ${style.flexGrow}`);
         if (style.flexShrink && style.flexShrink !== '1') relevantStyles.push(`  flex-shrink: ${style.flexShrink}`);
@@ -1277,7 +1540,7 @@
         if (style.alignSelf && style.alignSelf !== 'auto') relevantStyles.push(`  align-self: ${style.alignSelf}`);
         if (style.width && style.width !== 'auto') relevantStyles.push(`  width: ${style.width}`);
         if (style.height && style.height !== 'auto') relevantStyles.push(`  height: ${style.height}`);
-        
+
         if (relevantStyles.length > 0) {
           const styleKey = relevantStyles.join(';\n');
           if (!itemStyles.has(styleKey)) {
@@ -1286,15 +1549,15 @@
           itemStyles.get(styleKey).push(item.textContent);
         }
       });
-      
+
       // Generate CSS for items with similar styles
       itemStyles.forEach((items, styles) => {
-        const selector = items.length === 1 ? 
-          `.flex-item:has-text("${items[0]}")` : 
+        const selector = items.length === 1 ?
+          `.flex-item:has-text("${items[0]}")` :
           `/* Items: ${items.join(', ')} */\n.flex-item`;
         childrenCSS += `${selector} {\n${styles};\n}\n\n`;
       });
-      
+
       return childrenCSS;
     }
 
@@ -1302,7 +1565,7 @@
     function setupItemControl(rangeId, textId, property, unit = '') {
       const range = document.getElementById(rangeId);
       const text = document.getElementById(textId);
-      
+
       range.addEventListener('input', () => {
         const value = range.value;
         text.value = value + unit;
@@ -1315,7 +1578,7 @@
           updateItemCSSDisplay();
         }
       });
-      
+
       text.addEventListener('input', () => {
         if (selectedItems.length > 0) {
           applyStyleToAllItems(property, text.value);
@@ -1344,13 +1607,13 @@
 
     function updateItemControlsFromElement() {
       if (!selectedItem || selectedItems.length === 0) return;
-      
+
       const style = selectedItem.style;
       const computedStyle = getComputedStyle(selectedItem);
-      
+
       // Update controls with current values - convert to em for font size (whole numbers only)
       const actualFontSize = style.fontSize || computedStyle.fontSize;
-      
+
       if (actualFontSize.includes('em')) {
         // Already in em, round to nearest whole number
         const fontSizeInEm = Math.round(parseFloat(actualFontSize));
@@ -1364,13 +1627,13 @@
         document.getElementById('fontSizeValue').value = fontSizeInEm + 'em';
         document.getElementById('fontSizeRange').value = fontSizeInEm;
       }
-      
+
       document.getElementById('itemFlexGrowValue').value = style.flexGrow || '0';
       document.getElementById('itemFlexGrowRange').value = style.flexGrow || '0';
-      
+
       document.getElementById('itemFlexShrinkValue').value = style.flexShrink || '0';
       document.getElementById('itemFlexShrinkRange').value = style.flexShrink || '0';
-      
+
       // Update align self radio
       const alignSelfValue = style.alignSelf || 'auto';
       const alignSelfRadio = document.querySelector(`input[name="itemAlignSelf"][value="${alignSelfValue}"]`);
@@ -1379,13 +1642,13 @@
 
     function updateItemCSSDisplay() {
       if (selectedItems.length === 0) return;
-      
+
       if (selectedItems.length === 1) {
         // Single item - show specific styles with proper CSS block
         const relevantStyles = [];
         const style = selectedItems[0].style;
         const item = selectedItems[0];
-        
+
         if (style.fontSize && style.fontSize !== '13px') relevantStyles.push(`  font-size: ${style.fontSize}`);
         if (style.flexGrow && style.flexGrow !== '0') relevantStyles.push(`  flex-grow: ${style.flexGrow}`);
         if (style.flexShrink && style.flexShrink !== '0') relevantStyles.push(`  flex-shrink: ${style.flexShrink}`);
@@ -1394,11 +1657,11 @@
         if (style.height && style.height !== 'auto') relevantStyles.push(`  height: ${style.height}`);
         if (style.alignSelf && style.alignSelf !== 'auto') relevantStyles.push(`  align-self: ${style.alignSelf}`);
         if (style.order && style.order !== '0') relevantStyles.push(`  order: ${style.order}`);
-        
+
         // Generate CSS selector - use class selector based on text content or a more generic approach
         const itemText = item.textContent;
         const selector = `.flex-item:nth-child(n) /* ${itemText} */`;
-        
+
         if (relevantStyles.length > 0) {
           document.getElementById('cssInfoTop').textContent = `${selector} {\n${relevantStyles.join(';\n')};\n}`;
         } else {
@@ -1411,7 +1674,7 @@
           const relevantStyles = [];
           const style = item.style;
           const itemText = item.textContent;
-          
+
           if (style.fontSize && style.fontSize !== '13px') relevantStyles.push(`  font-size: ${style.fontSize}`);
           if (style.flexGrow && style.flexGrow !== '0') relevantStyles.push(`  flex-grow: ${style.flexGrow}`);
           if (style.flexShrink && style.flexShrink !== '0') relevantStyles.push(`  flex-shrink: ${style.flexShrink}`);
@@ -1420,14 +1683,14 @@
           if (style.height && style.height !== 'auto') relevantStyles.push(`  height: ${style.height}`);
           if (style.alignSelf && style.alignSelf !== 'auto') relevantStyles.push(`  align-self: ${style.alignSelf}`);
           if (style.order && style.order !== '0') relevantStyles.push(`  order: ${style.order}`);
-          
+
           const selector = `.flex-item:nth-child(n) /* ${itemText} */`;
-          
+
           if (relevantStyles.length > 0) {
             combinedCSS += `${selector} {\n${relevantStyles.join(';\n')};\n}\n\n`;
           }
         });
-        
+
         document.getElementById('cssInfoTop').textContent = combinedCSS || `/* ${selectedItems.length} items selected - no custom styles applied */`;
       }
     }
@@ -1435,7 +1698,7 @@
     // Action buttons
     document.getElementById('addContainer').addEventListener('click', () => {
       console.log('Add container clicked'); // Debug
-      
+
       // Use selected container or root as default
       let targetContainer;
       if (selectedContainer && selectedContainer.element) {
@@ -1446,13 +1709,13 @@
         targetContainer = document.getElementById('rootContainer');
       }
       console.log('Target container:', targetContainer ? targetContainer.id : 'null'); // Debug
-      
+
       // Find next available container ID
       let nextId = 1;
       while (document.getElementById(`container${nextId}`)) {
         nextId++;
       }
-      
+
       console.log('Next available container ID:', nextId); // Debug
       const newContainer = document.createElement('div');
       newContainer.className = 'nested-container';
@@ -1460,13 +1723,13 @@
       newContainer.setAttribute('data-container', `container${nextId}`);
       newContainer.setAttribute('data-label', `Container ${String.fromCharCode(64 + nextId)}`);
       console.log('Creating container with ID:', newContainer.id); // Debug
-      
+
       // Set default flex styles
       newContainer.style.display = 'flex';
       newContainer.style.flexDirection = 'column';
       newContainer.style.justifyContent = 'flex-start';
       newContainer.style.alignItems = 'stretch';  // CSS spec default
-      
+
       // Add some items
       const labels = ['1', '2'];
       labels.forEach((label, index) => {
@@ -1475,111 +1738,111 @@
         const randomSize = fontSizes[Math.floor(Math.random() * fontSizes.length)];
         item.className = `flex-item ${randomSize}`;
         item.textContent = `${String.fromCharCode(64 + nextId)}${index + 1}`;
-        
+
         // Click event handled by document listener for multi-selection support
-        
+
         newContainer.appendChild(item);
       });
-      
+
       // Container click handled by document listener for multi-selection support
-      
+
       targetContainer.appendChild(newContainer);
       itemCounter[`container${nextId}`] = 2;
-      
+
       // Add to hierarchy
       const hierarchyItem = document.createElement('div');
       hierarchyItem.className = 'hierarchy-item nested';
       hierarchyItem.setAttribute('data-container', `container${nextId}`);
       hierarchyItem.textContent = `📦 Container ${String.fromCharCode(64 + nextId)}`;
-      
+
       // Hierarchy item click handled by document listener for multi-selection support
-      
+
       document.getElementById('hierarchy').appendChild(hierarchyItem);
-      
+
       console.log('Container added:', newContainer.id); // Debug
     });
 
     document.getElementById('removeContainer').addEventListener('click', () => {
       console.log('Remove container clicked, selectedContainers:', selectedContainers.length); // Debug
-      
+
       // Check if we have containers to remove
-      const containersToRemove = selectedContainers.length > 0 ? selectedContainers : 
+      const containersToRemove = selectedContainers.length > 0 ? selectedContainers :
                                 (selectedContainer ? [selectedContainer] : []);
-      
+
       if (containersToRemove.length === 0) {
         console.log('No containers selected');
         return;
       }
-      
+
       // Filter out root container (cannot be removed)
-      const removableContainers = containersToRemove.filter(container => 
+      const removableContainers = containersToRemove.filter(container =>
         container.id !== 'root' && container.id !== 'rootContainer'
       );
-      
+
       if (removableContainers.length === 0) {
         console.log('Cannot remove root container(s)');
         return;
       }
-      
+
       // Remove all selected containers
       removableContainers.forEach(container => {
         const containerToRemove = container.element;
         const containerId = container.id;
         console.log('Removing container:', containerId);
-        
+
         // Remove from DOM
         containerToRemove.remove();
-        
+
         // Remove from hierarchy
         const hierarchyItem = document.querySelector(`.hierarchy-item[data-container="${containerId}"]`);
         if (hierarchyItem) {
           hierarchyItem.remove();
           console.log('Hierarchy item removed:', containerId);
         }
-        
+
         // Clean up item counter
         delete itemCounter[containerId];
       });
-      
+
       // Clear selection
       clearSelection();
-      
+
       console.log('Containers removed successfully:', removableContainers.map(c => c.id));
     });
 
     document.getElementById('addItem').addEventListener('click', () => {
       if (!selectedContainer || selectedContainer.id === 'root') return;
-      
+
       const containerId = selectedContainer.id;
       itemCounter[containerId]++;
-      
+
       const item = document.createElement('div');
       const fontSizes = ['item-small', 'item-medium', 'item-large'];
       const randomSize = fontSizes[Math.floor(Math.random() * fontSizes.length)];
       item.className = `flex-item ${randomSize}`;
-      
+
       // Get the letter from the container's data-label attribute
       const containerLabel = selectedContainer.element.getAttribute('data-label');
       const containerLetter = containerLabel ? containerLabel.split(' ')[1] : containerId.slice(-1).toUpperCase();
       item.textContent = `${containerLetter}${itemCounter[containerId]}`;
-      
+
       // Click event handled by document listener for multi-selection support
-      
+
       selectedContainer.element.appendChild(item);
     });
 
     document.getElementById('removeItem').addEventListener('click', () => {
       console.log('Remove item clicked, selectedItems:', selectedItems.length); // Debug
-      
+
       // Check if we have items to remove
-      const itemsToRemove = selectedItems.length > 0 ? selectedItems : 
+      const itemsToRemove = selectedItems.length > 0 ? selectedItems :
                            (selectedItem ? [selectedItem] : []);
-      
+
       if (itemsToRemove.length === 0) {
         console.log('No items selected, trying to remove last item from selected container');
         // If no items are selected, remove the last item from selected container
         if (!selectedContainer || selectedContainer.id === 'rootContainer') return;
-        
+
         const items = selectedContainer.element.querySelectorAll('.flex-item');
         if (items.length > 0) {
           items[items.length - 1].remove();
@@ -1587,23 +1850,23 @@
         }
         return;
       }
-      
+
       // Remove all selected items
       itemsToRemove.forEach(item => {
         const parentContainer = item.parentElement;
         const parentId = parentContainer.id || parentContainer.getAttribute('data-container');
-        
+
         console.log('Removing item:', item.textContent, 'from container:', parentId);
-        
+
         // Remove from DOM
         item.remove();
-        
+
         // Update item counter
         if (parentId && itemCounter[parentId]) {
           itemCounter[parentId]--;
         }
       });
-      
+
       // Clear selection
       selectedItem = null;
       selectedItems = [];
@@ -1611,7 +1874,7 @@
       document.getElementById('itemControls').style.display = 'none';
       updateButtonStates();
       updateItemCSSDisplay();
-      
+
       console.log('Items removed successfully:', itemsToRemove.length);
     });
 
@@ -1650,7 +1913,7 @@
       document.querySelectorAll('.hierarchy-item').forEach(item => {
         item.classList.remove('selected');
       });
-      
+
       // Clear selections
       selectedContainer = null;
       selectedItem = null;
@@ -1658,7 +1921,7 @@
       lastClickedItem = null;
       document.getElementById('containerControls').style.display = 'none';
       document.getElementById('itemControls').style.display = 'none';
-      
+
       // Restore initial state
       initializeContainerDefaults();
     });
@@ -1678,12 +1941,12 @@
         const directions = ['row', 'column', 'row-reverse', 'column-reverse'];
         const justifies = ['flex-start', 'center', 'flex-end', 'space-between', 'space-around'];
         const aligns = ['stretch', 'flex-start', 'center', 'flex-end'];
-        
+
         container.style.flexDirection = directions[Math.floor(Math.random() * directions.length)];
         container.style.justifyContent = justifies[Math.floor(Math.random() * justifies.length)];
         container.style.alignItems = aligns[Math.floor(Math.random() * aligns.length)];
       });
-      
+
       if (selectedContainer) {
         updateControlsFromContainer();
         updateCSSDisplay();
@@ -1691,16 +1954,16 @@
     });
 
     let isUpdatingCheckbox = false;
-    
+
     document.getElementById('selectAllContainersToggle').addEventListener('change', (e) => {
       // Ignore programmatic updates
       if (isUpdatingCheckbox) {
         console.log('DEBUG Ignoring programmatic checkbox change');
         return;
       }
-      
+
       console.log('DEBUG User checkbox change:', e.target.checked);
-      
+
       if (e.target.checked) {
         selectAllContainers();
       } else {
@@ -1729,7 +1992,7 @@
         // Note: Other defaults don't need to be set as they're browser defaults:
         // flex-direction: row, flex-wrap: nowrap, justify-content: flex-start
       });
-      
+
       // Initialize align-content section as disabled (since default is nowrap)
       const alignContentSection = document.getElementById('alignContentSection');
       alignContentSection.style.opacity = '0.5';
@@ -1746,9 +2009,12 @@
 
     // Initialize with default styles and no container selected
     initializeContainerDefaults();
-    
+
     // Initialize with no selection and hidden UI
     clearSelection();
+
+    // Initialize arrows with default values (hidden initially since no container is selected)
+    updateAllArrows();
   </script>
 </body>
 </html>
